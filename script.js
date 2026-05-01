@@ -1,6 +1,7 @@
 let n1 = 0;
 let op = null;
 let n2 = null;
+let resultDisplayed = false;
 const clear = document.querySelector(".clear");
 const digits = document.querySelectorAll(".digit");
 const operators = document.querySelectorAll(".operator");
@@ -41,7 +42,10 @@ function operate() {
 }
 
 function updateNumberVars(n) {
-  if (op === null) {
+  if (resultDisplayed) {
+    n1 = +n;
+    resultDisplayed = false;
+  } else if (op === null) {
     n1 = +(n1 + n);
   } else {
     n2 = n2 === null ? +n : +(n2 + n);
@@ -63,9 +67,11 @@ for (const operator of operators) {
   operator.addEventListener("click", () => {
     if (n2 !== null) {
       operate();
+      resultDisplayed = true;
     }
     if (operator.textContent !== "=") {
       op = operator.textContent;
+      resultDisplayed = false;
     }
     updateDisplay();
   });
