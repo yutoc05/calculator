@@ -1,7 +1,9 @@
 let n1 = 0;
 let op = null;
 let n2 = null;
+const clear = document.querySelector(".clear");
 const digits = document.querySelectorAll(".digit");
+const operators = document.querySelectorAll(".operator");
 const display = document.querySelector(".display");
 
 function add(a, b) {
@@ -20,16 +22,18 @@ function divide(a, b) {
   return a / b;
 }
 
-function operate(op, n1, n2) {
+function operate() {
   if (op === "+") {
-    return add(n1, n2);
+    n1 = add(n1, n2);
   } else if (op === "−") {
-    return subtract(n1, n2);
+    n1 = subtract(n1, n2);
   } else if (op === "×") {
-    return multiply(n1, n2);
+    n1 = multiply(n1, n2);
   } else {
-    return divide(n1, n2);
+    n1 = divide(n1, n2);
   }
+  op = null;
+  n2 = null;
 }
 
 function updateNumberVars(n) {
@@ -50,3 +54,22 @@ for (const digit of digits) {
     updateDisplay();
   });
 }
+
+for (const operator of operators) {
+  operator.addEventListener("click", () => {
+    if (n2 !== null) {
+      operate();
+    }
+    if (operator.textContent !== "=") {
+      op = operator.textContent;
+    }
+    updateDisplay();
+  });
+}
+
+clear.addEventListener("click", () => {
+  n1 = 0;
+  op = null;
+  n2 = null;
+  updateDisplay();
+});
