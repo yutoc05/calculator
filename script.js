@@ -29,6 +29,10 @@ function operate() {
     n1 = subtract(n1, n2);
   } else if (op === "×") {
     n1 = multiply(n1, n2);
+  } else if (n1 === 0 && n2 === 0) {
+    alert("Indeterminate");
+  } else if (n2 === 0) {
+    alert("Undefined");
   } else {
     n1 = divide(n1, n2);
   }
