@@ -144,3 +144,24 @@ backspace.addEventListener("click", () => {
   }
   updateDisplay();
 });
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "1") digits[6].click();
+  if (e.key === "2") digits[7].click();
+  if (e.key === "3") digits[8].click();
+  if (e.key === "4") digits[3].click();
+  if (e.key === "5") digits[4].click();
+  if (e.key === "6") digits[5].click();
+  if (e.key === "7") digits[0].click();
+  if (e.key === "8") digits[1].click();
+  if (e.key === "9") digits[2].click();
+  if (e.key === "0") digits[10].click();
+  if (e.key === ".") digits[9].click();
+  if (e.key === "+") operators[4].click();
+  if (e.key === "-") operators[2].click();
+  if (e.key === "*" || e.key === "x" || e.key === "X") operators[1].click();
+  if (e.key === "/") operators[0].click();
+  if (e.key === "=" || e.key === "Enter") operators[3].click();
+  if (e.key === "Escape") clear.click();
+  if (e.key === "Backspace") backspace.click();
+});
