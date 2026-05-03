@@ -4,6 +4,7 @@ let n2 = "";
 let n1HasDecimal = false;
 let n2HasDecimal = false;
 let resultDisplayed = false;
+const buttons = document.querySelectorAll(".buttons button");
 const clear = document.querySelector(".clear");
 const backspace = document.querySelector(".backspace");
 const digits = document.querySelectorAll(".digit");
@@ -96,6 +97,10 @@ function updateDisplay() {
   display.textContent = n1;
   display.textContent += op !== "" ? ` ${op}` : "";
   display.textContent += n2 !== "" ? ` ${n2}` : "";
+}
+
+for (const button of buttons) {
+  button.addEventListener("click", () => button.blur());
 }
 
 for (const digit of digits) {
