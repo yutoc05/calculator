@@ -128,3 +128,19 @@ clear.addEventListener("click", () => {
   resultDisplayed = false;
   updateDisplay();
 });
+
+backspace.addEventListener("click", () => {
+  resultDisplayed = false;
+  if (n2 !== "") {
+    n2 = n2.slice(0, -1);
+    n2HasDecimal = n2.includes(".");
+  } else if (op !== "") {
+    op = op.slice(0, -1);
+  } else if (n1.length === 1) {
+    n1 = "0";
+  } else {
+    n1 = n1.slice(0, -1);
+    n1HasDecimal = n1.includes(".");
+  }
+  updateDisplay();
+});
