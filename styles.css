@@ -1,18 +1,16 @@
 :root {
-  --background: #f6f6f6;
+  --background: #cfe4e5;
   --font: #222;
   --border: #333;
-  --screen: #eee;
-  --calculator: #aaa;
-  --btn: #eee;
-  --btn-hover: #ddd;
-  --btn-active: #ccc;
-  --btn-red: #faa;
-  --btn-red-hover: #e99;
-  --btn-red-active: #d88;
-  --btn-blue: #aaf;
-  --btn-blue-hover: #99e;
-  --btn-blue-active: #88d;
+  --screen: #3c4654;
+  --calculator: #414a57;
+  --display-font: #fff;
+  --digit-font: #fff;
+  --operator-font: #6e7882;
+  --red-font: #e7715d;
+  --btn: #394351;
+  --btn-hover: #293341;
+  --btn-active: #192331;
 }
 
 *,
@@ -40,16 +38,24 @@ body {
 
 button {
   border: none;
-  color: inherit;
   font-family: inherit;
-  font-size: inherit;
   cursor: pointer;
   outline: none;
-  padding: 20px;
-  border: 2px var(--border) solid;
-  border-radius: 5px;
   background-color: var(--btn);
-  font-size: 20px;
+}
+
+.digit {
+  color: var(--digit-font);
+  font-size: 25px;
+  aspect-ratio: 1;
+}
+
+.operator {
+  color: var(--operator-font);
+  font-weight: 200;
+  font-size: 40px;
+  font-family: "Roboto Mono", monospace;
+  aspect-ratio: 1;
 }
 
 /* MAIN */
@@ -66,34 +72,39 @@ button {
 
 .calculator {
   width: 400px;
-  border: 2px var(--border) solid;
-  border-radius: 15px;
-  padding: 20px;
+  border: 1px var(--calculator) solid;
+  border-radius: 10px;
+  overflow: hidden;
   background-color: var(--calculator);
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .display {
   padding: 10px 20px;
-  border: 2px var(--border) solid;
-  border-radius: 5px;
-  margin-bottom: 20px;
   background-color: var(--screen);
+  color: var(--display-font);
   text-align: right;
   word-wrap: break-word;
   word-break: break-all;
   min-height: 64px;
   font-size: 40px;
+  font-weight: 200;
+  font-family: "Roboto Mono", monospace;
 }
 
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 10px;
+  grid-auto-rows: 1fr;
+  grid-gap: 2px;
 }
 
 .clear,
 .backspace {
   grid-column: span 2;
+  color: var(--red-font);
+  background-color: var(--btn);
+  font-size: 20px;
 }
 
 button:hover {
@@ -102,30 +113,6 @@ button:hover {
 
 button:active {
   background-color: var(--btn-active);
-}
-
-.clear {
-  background-color: var(--btn-red);
-}
-
-.clear:hover {
-  background-color: var(--btn-red-hover);
-}
-
-.clear:active {
-  background-color: var(--btn-red-active);
-}
-
-.backspace {
-  background-color: var(--btn-blue);
-}
-
-.backspace:hover {
-  background-color: var(--btn-blue-hover);
-}
-
-.backspace:active {
-  background-color: var(--btn-blue-active);
 }
 
 /* FOOTER */
@@ -140,17 +127,7 @@ button:active {
   gap: 10px;
   width: 100%;
   padding: 10px;
-  font-size: 20px;
-}
-
-.github-logo {
-  display: block;
-  max-width: 28px;
-  max-height: 28px;
-  color: var(--font);
-  transition: transform 0.3s ease-in-out;
-}
-
-.github-logo:hover {
-  transform: rotate(360deg) scale(1.2);
+  font-family: "Roboto Mono", monospace;
+  font-size: 14px;
+  font-weight: 300;
 }
