@@ -48,12 +48,12 @@ function operate() {
 }
 
 function updateNumberVars(n) {
-  // start new calculation
   if (resultDisplayed) {
     if (n === ".") {
       n1HasDecimal = true;
       n1 = "0.";
     } else {
+      n1HasDecimal = false;
       n1 = n;
     }
     resultDisplayed = false;
