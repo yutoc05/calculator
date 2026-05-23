@@ -21,19 +21,14 @@
   margin: 0;
 }
 
-html {
-  /* footer support */
-  position: relative;
-  min-height: 100%;
-}
-
 body {
   background-color: var(--background);
   color: var(--font);
   font-family: "Roboto", sans-serif;
   line-height: 1.6;
-  /* footer support */
-  margin-bottom: 100px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 button {
@@ -57,8 +52,6 @@ button {
   font-family: "Roboto Mono", monospace;
   aspect-ratio: 1;
 }
-
-/* MAIN */
 
 .main {
   display: flex;
@@ -115,12 +108,7 @@ button:active {
   background-color: var(--btn-active);
 }
 
-/* FOOTER */
-
 .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,4 +118,5 @@ button:active {
   font-family: "Roboto Mono", monospace;
   font-size: 14px;
   font-weight: 300;
+  margin-top: auto;
 }
