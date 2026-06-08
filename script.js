@@ -32,15 +32,23 @@ function divide(a, b) {
   return a / b;
 }
 
+const SYMBOLS = {
+  add: "+",
+  subtract: "−",
+  multiply: "×",
+  divide: "÷",
+  equals: "=",
+};
+
 const operations = {
-  "+": add,
-  "−": subtract,
-  "×": multiply,
-  "÷": divide,
+  [SYMBOLS.add]: add,
+  [SYMBOLS.subtract]: subtract,
+  [SYMBOLS.multiply]: multiply,
+  [SYMBOLS.divide]: divide,
 };
 
 function operate() {
-  if (op === "÷" && +n2 === 0) {
+  if (op === SYMBOLS.divide && +n2 === 0) {
     alert(+n1 === 0 ? "Indeterminate" : "Undefined");
   } else {
     n1 = operations[op](+n1, +n2).toString();
@@ -68,9 +76,7 @@ function updateNumberVars(n) {
 }
 
 function updateDisplay() {
-  display.textContent = n1;
-  display.textContent += op !== "" ? ` ${op}` : "";
-  display.textContent += n2 !== "" ? ` ${n2}` : "";
+  display.textContent = [n1, op, n2].filter(Boolean).join(" ");
 }
 
 for (const button of buttons) {
@@ -117,23 +123,21 @@ backspace.addEventListener("click", () => {
   updateDisplay();
 });
 
-const buttonForKey = {};
-for (const digit of digits) {
-  buttonForKey[digit.textContent] = digit;
-}
-const operatorByText = {};
-for (const operator of operators) {
-  operatorByText[operator.textContent] = operator;
-}
+const buttonForKey = Object.fromEntries(
+  [...digits].map((digit) => [digit.textContent, digit])
+);
+const operatorByText = Object.fromEntries(
+  [...operators].map((operator) => [operator.textContent, operator])
+);
 Object.assign(buttonForKey, {
-  "+": operatorByText["+"],
-  "-": operatorByText["−"],
-  "*": operatorByText["×"],
-  x: operatorByText["×"],
-  X: operatorByText["×"],
-  "/": operatorByText["÷"],
-  "=": operatorByText["="],
-  Enter: operatorByText["="],
+  "+": operatorByText[SYMBOLS.add],
+  "-": operatorByText[SYMBOLS.subtract],
+  "*": operatorByText[SYMBOLS.multiply],
+  x: operatorByText[SYMBOLS.multiply],
+  X: operatorByText[SYMBOLS.multiply],
+  "/": operatorByText[SYMBOLS.divide],
+  "=": operatorByText[SYMBOLS.equals],
+  Enter: operatorByText[SYMBOLS.equals],
   Escape: clear,
   Backspace: backspace,
 });
