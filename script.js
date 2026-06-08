@@ -49,40 +49,21 @@ function operate() {
   n2 = "";
 }
 
+function appendDigit(current, n) {
+  if (n === "." && current.includes(".")) return current;
+  if (n === "." && (current === "" || current === "0")) return "0.";
+  if (current === "0") return n === "0" ? "0" : n;
+  return current + n;
+}
+
 function updateNumberVars(n) {
   if (resultDisplayed) {
-    if (n === ".") {
-      n1 = "0.";
-    } else {
-      n1 = n;
-    }
+    n1 = n === "." ? "0." : n;
     resultDisplayed = false;
   } else if (op === "") {
-    if (n === "." && n1.includes(".")) {
-      return;
-    }
-    if (n === "0" && n1 === "0") {
-      return;
-    }
-    if (n !== "." && n1 === "0") {
-      n1 = n;
-      return;
-    }
-    n1 += n;
+    n1 = appendDigit(n1, n);
   } else {
-    if (n === "." && n2.includes(".")) {
-      return;
-    }
-    if (n === "0" && n2 === "0") {
-      return;
-    }
-    if (n === "." && n2 === "") {
-      n2 = "0.";
-    } else if (n2 === "0" && n !== ".") {
-      n2 = n;
-    } else {
-      n2 += n;
-    }
+    n2 = appendDigit(n2, n);
   }
 }
 
