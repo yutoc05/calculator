@@ -1,7 +1,14 @@
-let n1 = "0";
-let op = "";
-let n2 = "";
-let resultDisplayed = false;
+let n1, op, n2, resultDisplayed;
+
+function reset() {
+  n1 = "0";
+  op = "";
+  n2 = "";
+  resultDisplayed = false;
+}
+
+reset();
+
 const buttons = document.querySelectorAll(".buttons button");
 const clear = document.querySelector(".clear");
 const backspace = document.querySelector(".backspace");
@@ -25,19 +32,18 @@ function divide(a, b) {
   return a / b;
 }
 
+const operations = {
+  "+": add,
+  "−": subtract,
+  "×": multiply,
+  "÷": divide,
+};
+
 function operate() {
-  if (op === "+") {
-    n1 = add(+n1, +n2).toString();
-  } else if (op === "−") {
-    n1 = subtract(+n1, +n2).toString();
-  } else if (op === "×") {
-    n1 = multiply(+n1, +n2).toString();
-  } else if (n1 == 0 && n2 == 0) {
-    alert("Indeterminate");
-  } else if (n2 == 0) {
-    alert("Undefined");
+  if (op === "÷" && +n2 === 0) {
+    alert(+n1 === 0 ? "Indeterminate" : "Undefined");
   } else {
-    n1 = divide(+n1, +n2).toString();
+    n1 = operations[op](+n1, +n2).toString();
   }
   op = "";
   n2 = "";
@@ -112,10 +118,7 @@ for (const operator of operators) {
 }
 
 clear.addEventListener("click", () => {
-  n1 = "0";
-  op = "";
-  n2 = "";
-  resultDisplayed = false;
+  reset();
   updateDisplay();
 });
 
@@ -133,23 +136,29 @@ backspace.addEventListener("click", () => {
   updateDisplay();
 });
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "1") digits[6].click();
-  if (e.key === "2") digits[7].click();
-  if (e.key === "3") digits[8].click();
-  if (e.key === "4") digits[3].click();
-  if (e.key === "5") digits[4].click();
-  if (e.key === "6") digits[5].click();
-  if (e.key === "7") digits[0].click();
-  if (e.key === "8") digits[1].click();
-  if (e.key === "9") digits[2].click();
-  if (e.key === "0") digits[10].click();
-  if (e.key === ".") digits[9].click();
-  if (e.key === "+") operators[4].click();
-  if (e.key === "-") operators[2].click();
-  if (e.key === "*" || e.key === "x" || e.key === "X") operators[1].click();
-  if (e.key === "/") operators[0].click();
-  if (e.key === "=" || e.key === "Enter") operators[3].click();
-  if (e.key === "Escape") clear.click();
-  if (e.key === "Backspace") backspace.click();
+const buttonForKey = {};
+for (const digit of digits) {
+  buttonForKey[digit.textContent] = digit;
+}
+const operatorByText = {};
+for (const operator of operators) {
+  operatorByText[operator.textContent] = operator;
+}
+Object.assign(buttonForKey, {
+  "+": operatorByText["+"],
+  "-": operatorByText["−"],
+  "*": operatorByText["×"],
+  x: operatorByText["×"],
+  X: operatorByText["×"],
+  "/": operatorByText["÷"],
+  "=": operatorByText["="],
+  Enter: operatorByText["="],
+  Escape: clear,
+  Backspace: backspace,
 });
+
+document.addEventListener("keydown", (e) => {
+  buttonForKey[e.key]?.click();
+});
+
+document.querySelector(".year").textContent = new Date().getFullYear();
