@@ -1,8 +1,6 @@
 let n1 = "0";
 let op = "";
 let n2 = "";
-let n1HasDecimal = false;
-let n2HasDecimal = false;
 let resultDisplayed = false;
 const buttons = document.querySelectorAll(".buttons button");
 const clear = document.querySelector(".clear");
@@ -43,22 +41,18 @@ function operate() {
   }
   op = "";
   n2 = "";
-  n2HasDecimal = false;
-  n1HasDecimal = n1.includes(".");
 }
 
 function updateNumberVars(n) {
   if (resultDisplayed) {
     if (n === ".") {
-      n1HasDecimal = true;
       n1 = "0.";
     } else {
-      n1HasDecimal = false;
       n1 = n;
     }
     resultDisplayed = false;
   } else if (op === "") {
-    if (n === "." && n1HasDecimal) {
+    if (n === "." && n1.includes(".")) {
       return;
     }
     if (n === "0" && n1 === "0") {
@@ -68,24 +62,17 @@ function updateNumberVars(n) {
       n1 = n;
       return;
     }
-    if (n === ".") {
-      n1HasDecimal = true;
-    }
     n1 += n;
   } else {
-    if (n === "." && n2HasDecimal) {
+    if (n === "." && n2.includes(".")) {
       return;
     }
     if (n === "0" && n2 === "0") {
       return;
     }
     if (n === "." && n2 === "") {
-      n2HasDecimal = true;
       n2 = "0.";
-    } else if (n === ".") {
-      n2HasDecimal = true;
-      n2 += n;
-    } else if (n2 === "0") {
+    } else if (n2 === "0" && n !== ".") {
       n2 = n;
     } else {
       n2 += n;
@@ -128,8 +115,6 @@ clear.addEventListener("click", () => {
   n1 = "0";
   op = "";
   n2 = "";
-  n1HasDecimal = false;
-  n2HasDecimal = false;
   resultDisplayed = false;
   updateDisplay();
 });
@@ -138,14 +123,12 @@ backspace.addEventListener("click", () => {
   resultDisplayed = false;
   if (n2 !== "") {
     n2 = n2.slice(0, -1);
-    n2HasDecimal = n2.includes(".");
   } else if (op !== "") {
     op = op.slice(0, -1);
   } else if (n1.length === 1) {
     n1 = "0";
   } else {
     n1 = n1.slice(0, -1);
-    n1HasDecimal = n1.includes(".");
   }
   updateDisplay();
 });
