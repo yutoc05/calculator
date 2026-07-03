@@ -36,6 +36,7 @@ button {
   cursor: pointer;
   outline: none;
   background-color: var(--btn);
+  touch-action: manipulation;
 }
 
 .digit {
@@ -99,8 +100,10 @@ button {
   font-size: 20px;
 }
 
-button:hover {
-  background-color: var(--btn-hover);
+@media (hover: hover) {
+  button:hover {
+    background-color: var(--btn-hover);
+  }
 }
 
 button:active {
