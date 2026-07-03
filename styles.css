@@ -37,6 +37,7 @@ button {
   outline: none;
   background-color: var(--btn);
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .digit {
