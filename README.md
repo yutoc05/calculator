@@ -1,40 +1,59 @@
-# Calculator
+<a id="readme-top"></a>
 
-A simple, responsive calculator web app built with vanilla HTML, CSS, and JavaScript.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/yutoc05/calculator">
+    <img src="favicon.png" alt="Logo" width="80" height="80">
+  </a>
 
-## Features
+<h3 align="center">Calculator</h3>
 
-- Basic arithmetic operations: addition, subtraction, multiplication, and division
-- Decimal number input support
-- Chained operations (compute and continue)
-- Clear (`C`) and delete/backspace (`DEL`) controls
-- Keyboard support for numbers and operators
-- Division edge-case handling (`Undefined` / `Indeterminate` alerts)
+  <p align="center">
+    A simple calculator built with HTML/CSS/JS.
+    <br />
+    <br />
+    <a href="https://yutoc05.github.io/calculator">View Demo</a>
+  </p>
+</div>
 
-## Tech Stack
+<!-- ABOUT THE PROJECT -->
 
-- HTML
-- CSS
-- JavaScript (ES modules)
+## About The Project
 
-## Project Structure
+![Calculator Screen Shot][calculator-screenshot]
 
-- `index.html` — app markup
-- `styles.css` — styling
-- `script.js` — calculator logic and keyboard bindings
+Can be controlled by clicking with a mouse, typing with a keyboard, or tapping with a mobile device.
 
-## Run Locally
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-This project does not require a build step.
+### Built With
 
-1. Clone the repository.
-2. Open `index.html` in your browser.
+- ![HTML][HTML]
+- ![CSS][CSS]
+- ![JavaScript][JavaScript]
 
-## Keyboard Controls
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-- `0-9` for digits
-- `.` for decimal point
-- `+`, `-`, `*`/`x`, `/` for operators
-- `Enter` or `=` to evaluate
-- `Backspace` to delete one character
-- `Escape` to clear
+<!-- USAGE EXAMPLES -->
+
+## Usage
+
+- `0-9`: digits
+- `+`, `-`, `*`/`x`/`X`, `/`: operators
+- `=`, `Enter`: evaluate
+- `Backspace`: delete
+- `Escape`: clear
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[calculator-screenshot]: screenshot.png
+
+<!-- Shields.io badges. You can a comprehensive list with many more badges at: https://github.com/inttter/md-badges -->
+
+[HTML]: https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white
+[CSS]: https://img.shields.io/badge/CSS-639?logo=css&logoColor=fff
+[JavaScript]: https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000
